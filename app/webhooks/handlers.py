@@ -1195,6 +1195,9 @@ async def handle_jellyseerr(payload: Dict[str, Any]) -> Dict[str, Any]:
             return {"ok": True, "detail": f"ignored: {str(e)}"}
 
         if episode == 0:
+            if cfg.SINGLE_EPISODE_ONLY:
+                log.info("Single-episode-only: whole-season/all-episodes issue for S%02d skipped", season)
+                return {"ok": True, "detail": "ignored: single-episode-only (no specific episode)"}
             # Check issue description + comments for a specific episode list before nuking the whole season
             text_to_scan = " ".join([
                 str(enriched_payload.get("message") or ""),

@@ -103,6 +103,11 @@ class Settings(BaseSettings):
     # re-search can grab the exact same broken release again and nothing changes.
     # OFF by default — the existing behavior is unchanged.
     BLOCKLIST_ON_REPLACE: bool = False
+    # When true, act ONLY on issues that target a single specific episode; whole-
+    # season / "all episodes" / multi-episode issues are skipped instead of acted
+    # on. Restores the pre-v0.2.4 single-episode safety brake. OFF by default
+    # (default keeps upstream whole-season/multi-episode handling).
+    SINGLE_EPISODE_ONLY: bool = False
 
     # ===== Keyword buckets (comma-separated) =====
     TV_AUDIO_KEYWORDS: str = "no audio,no sound,missing audio,audio issue,wrong language,not in english"
